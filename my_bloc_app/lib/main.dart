@@ -27,9 +27,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   // to initialize the instance
-  final _counter = CounterCubit();
+  final _counter = CounterBloc();
   int _state = 0;
 
   // to listen to the events and set the state
@@ -70,11 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => _counter.decrement(),
+                  onPressed: () => _counter.add(CounterEvent.decrement),
                   child: const Icon(Icons.remove),
                 ),
                 ElevatedButton(
-                  onPressed: () => _counter.increment(),
+                  onPressed: () => _counter.add(CounterEvent.increment),
                   child: const Icon(Icons.add),
                 )
               ],
@@ -86,9 +85,24 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class CounterCubit extends Cubit<int> {
-  CounterCubit() : super(0);
+// class CounterCubit extends Cubit<int> {
+//   CounterCubit() : super(0);
 
-  void increment() => emit(state + 1);
-  void decrement() => emit(state - 1);
+//   void increment() => emit(state + 1);
+//   void decrement() => emit(state - 1);
+// }
+
+enum CounterEvent { increment, decrement }
+
+class CounterBloc extends Bloc<CounterEvent, int> {
+  CounterBloc() : super(0) {
+    on<CounterEvent>((event, emit) {
+      switch (event) {
+        case CounterEvent.increment:
+          emit(state + 1);
+        case CounterEvent.decrement:
+          emit(state - 1);
+      }
+    });
+  }
 }
