@@ -27,8 +27,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  // to initialize the instance
   final _counter = CounterCubit();
   int _state = 0;
+
+  // to listen to the events and set the state
   @override
   void initState() {
     _counter.stream.listen(
@@ -37,6 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
       }),
     );
     super.initState();
+  }
+
+  // to free the instance
+  @override
+  void dispose() {
+    _counter.close();
+    super.dispose();
   }
 
   @override
