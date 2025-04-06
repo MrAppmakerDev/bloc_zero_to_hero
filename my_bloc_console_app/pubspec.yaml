@@ -1,0 +1,9 @@
+name: my_bloc_console_app
+description: A new Dart project.
+version: 1.0.0
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  bloc: ^9.0.0
