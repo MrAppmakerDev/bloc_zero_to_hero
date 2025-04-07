@@ -8,10 +8,64 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "characters",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/characters-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "collection",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.19.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "flutter",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Flutter%20SDKs/flutter-v3.29.2/packages/flutter",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "flutter_bloc",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_bloc-9.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "material_color_utilities",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.11.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "meta",
       "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.16.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "nested",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "sky_engine",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Flutter%20SDKs/flutter-v3.29.2/bin/cache/pkg/sky_engine",
+      "packageUri": "lib/",
+      "languageVersion": "3.7"
+    },
+    {
+      "name": "vector_math",
+      "rootUri": "file:///C:/Users/brije/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "my_bloc_console_app",
@@ -20,7 +74,7 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-04-06T07:23:48.833201Z",
+  "generated": "2025-04-07T18:36:02.015048Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///C:/Users/brije/AppData/Local/Flutter%20SDKs/flutter-v3.29.2",
