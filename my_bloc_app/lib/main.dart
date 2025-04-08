@@ -54,41 +54,54 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Cubit App'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            BlocBuilder<CounterCubit, CounterState>(
-              builder: (context, state) {
-                return Text(
-                  state.counter < 0
-                      ? 'Brr! ${state.counter}'
-                      : state.counter % 2 == 0
-                          ? 'Hurray! ${state.counter}'
-                          : 'Hmm! ${state.counter}',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                );
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FloatingActionButton(
-                  onPressed: () =>
-                      BlocProvider.of<CounterCubit>(context).decrement(),
-                  tooltip: 'decrement',
-                  child: const Icon(Icons.remove),
-                ),
-                FloatingActionButton(
-                  onPressed: () =>
-                      BlocProvider.of<CounterCubit>(context).increment(),
-                  tooltip: 'increment',
-                  child: const Icon(Icons.add),
-                )
-              ],
-            )
-          ],
+      body: BlocListener<CounterCubit, CounterState>(
+        listener: (context, state) {
+          state.isIncremented
+              ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('${state.counter - 1} is incremented!'),
+                  duration: Duration(milliseconds: 300),
+                ))
+              : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('${state.counter + 1} is decremented!'),
+                  duration: Duration(milliseconds: 300),
+                ));
+        },
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('You have pushed the button this many times:'),
+              BlocBuilder<CounterCubit, CounterState>(
+                builder: (context, state) {
+                  return Text(
+                    state.counter < 0
+                        ? 'Brr! ${state.counter}'
+                        : state.counter % 2 == 0
+                            ? 'Hurray! ${state.counter}'
+                            : 'Hmm! ${state.counter}',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  );
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () =>
+                        BlocProvider.of<CounterCubit>(context).decrement(),
+                    tooltip: 'decrement',
+                    child: const Icon(Icons.remove),
+                  ),
+                  FloatingActionButton(
+                    onPressed: () =>
+                        BlocProvider.of<CounterCubit>(context).increment(),
+                    tooltip: 'increment',
+                    child: const Icon(Icons.add),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
