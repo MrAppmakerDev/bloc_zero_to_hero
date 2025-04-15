@@ -7,7 +7,8 @@ class WeatherRemoteDatasource {
 
   WeatherRemoteDatasource({required this.dio});
 
-  Future<Either<dynamic, dynamic>> getRawWeatherData(String location) async {
+  Future<Either<Map<String, dynamic>, Map<String, dynamic>>> getRawWeatherData(
+      String location) async {
     try {
       final response = await dio.get(
         '/current.json',
@@ -26,17 +27,20 @@ class WeatherRemoteDatasource {
     } on DioException catch (e) {
       if (e.response != null) {
         // Handle DioException
-        return Either.left(e.response as Map<String, dynamic>);
+        final errorCode = -1;
+        final errorMessage = e.response;
+        final data = {'error': errorCode, 'message': errorMessage};
+        return Either.left(data as Map<String, dynamic>);
       } else {
         // Handle network errors
-        final errorCode = -1;
+        final errorCode = -2;
         final errorMessage = 'Network error: ${e.toString()}';
         final data = {'error': errorCode, 'message': errorMessage};
         return Either.left(data as Map<String, dynamic>);
       }
     } catch (e) {
       // Handle unexpected errors
-      final errorCode = -2;
+      final errorCode = -3;
       final errorMessage = 'An unexpected error occurred: ${e.toString()}';
       final data = {'error': errorCode, 'message': errorMessage};
       return Either.left(data as Map<String, dynamic>);

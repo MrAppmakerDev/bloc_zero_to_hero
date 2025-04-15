@@ -28,8 +28,8 @@ class WeatherError {
       );
 
   factory WeatherError.fromJson(Map<String, dynamic> json) => WeatherError(
-        code: json["code"],
-        message: json["message"],
+        code: json["code"] ?? -1,
+        message: json["message"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

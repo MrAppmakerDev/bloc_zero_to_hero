@@ -41,30 +41,29 @@ class WeatherResponse {
 }
 
 class Current {
-  final int lastUpdatedEpoch;
+  final num lastUpdatedEpoch;
   final String lastUpdated;
-  final double tempC;
-  final double tempF;
-  final int isDay;
+  final num tempC;
+  final num tempF;
+  final num isDay;
   final Condition condition;
-  final double windMph;
-  final double windKph;
-  final int windDegree;
+  final num windMph;
+  final num windKph;
+  final num windDegree;
   final String windDir;
-  final int pressureMb;
-  final double pressureIn;
-  final int precipMm;
-  final int precipIn;
-  final int humidity;
-  final int cloud;
-  final int feelslikeC;
-  final double feelslikeF;
-  final int visKm;
-  final int visMiles;
-  final int uv;
-  final double gustMph;
-  final double gustKph;
-  final Map<String, double> airQuality;
+  final num pressureMb;
+  final num pressureIn;
+  final num precipMm;
+  final num precipIn;
+  final num humidity;
+  final num cloud;
+  final num feelslikeC;
+  final num feelslikeF;
+  final num visKm;
+  final num visMiles;
+  final num uv;
+  final num gustMph;
+  final num gustKph;
 
   Current({
     required this.lastUpdatedEpoch,
@@ -90,34 +89,32 @@ class Current {
     required this.uv,
     required this.gustMph,
     required this.gustKph,
-    required this.airQuality,
   });
 
   Current copyWith({
-    int? lastUpdatedEpoch,
+    num? lastUpdatedEpoch,
     String? lastUpdated,
-    double? tempC,
-    double? tempF,
-    int? isDay,
+    num? tempC,
+    num? tempF,
+    num? isDay,
     Condition? condition,
-    double? windMph,
-    double? windKph,
-    int? windDegree,
+    num? windMph,
+    num? windKph,
+    num? windDegree,
     String? windDir,
-    int? pressureMb,
-    double? pressureIn,
-    int? precipMm,
-    int? precipIn,
-    int? humidity,
-    int? cloud,
-    int? feelslikeC,
-    double? feelslikeF,
-    int? visKm,
-    int? visMiles,
-    int? uv,
-    double? gustMph,
-    double? gustKph,
-    Map<String, double>? airQuality,
+    num? pressureMb,
+    num? pressureIn,
+    num? precipMm,
+    num? precipIn,
+    num? humidity,
+    num? cloud,
+    num? feelslikeC,
+    num? feelslikeF,
+    num? visKm,
+    num? visMiles,
+    num? uv,
+    num? gustMph,
+    num? gustKph,
   }) =>
       Current(
         lastUpdatedEpoch: lastUpdatedEpoch ?? this.lastUpdatedEpoch,
@@ -143,7 +140,6 @@ class Current {
         uv: uv ?? this.uv,
         gustMph: gustMph ?? this.gustMph,
         gustKph: gustKph ?? this.gustKph,
-        airQuality: airQuality ?? this.airQuality,
       );
 
   factory Current.fromJson(Map<String, dynamic> json) => Current(
@@ -170,8 +166,6 @@ class Current {
         uv: json["uv"],
         gustMph: json["gust_mph"]?.toDouble(),
         gustKph: json["gust_kph"]?.toDouble(),
-        airQuality: Map.from(json["air_quality"])
-            .map((k, v) => MapEntry<String, double>(k, v?.toDouble())),
       );
 
   Map<String, dynamic> toJson() => {
@@ -198,8 +192,6 @@ class Current {
         "uv": uv,
         "gust_mph": gustMph,
         "gust_kph": gustKph,
-        "air_quality":
-            Map.from(airQuality).map((k, v) => MapEntry<String, dynamic>(k, v)),
       };
 }
 
