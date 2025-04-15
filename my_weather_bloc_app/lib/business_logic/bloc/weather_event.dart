@@ -1,9 +1,9 @@
 part of 'weather_bloc.dart';
 
-class WeatherEvent extends Cubit<WeatherState> {
-  WeatherEvent() : super(WeatherState(isLoading: false, response: null));
+abstract class WeatherEvent {}
 
-  void setLoading() => emit(WeatherState(isLoading: state.isLoading));
+class RefreshWeatherDataEvent extends WeatherEvent {
+  final String location;
 
-  void loadWeather() => emit(WeatherState(response: state.response));
+  RefreshWeatherDataEvent({required this.location});
 }

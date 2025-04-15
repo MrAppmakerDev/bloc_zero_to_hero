@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   TextEditingController textController = TextEditingController();
+
   @override
   void dispose() {
     textController.dispose();
@@ -20,43 +21,56 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Weather BloC App'),
-          centerTitle: true,
-        ),
-        body: BlocConsumer<WeatherBloc, WeatherState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
-          builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.sunny,
-                  size: 250.0,
-                  color: Colors.yellow[300],
-                ),
-                SizedBox(height: 20.0),
-                TextFormField(
-                  controller: textController,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(10.0),
-                      hintText: 'Enter the city?'),
-                ),
-                SizedBox(height: 10.0),
-                CustomButton(
-                  onPressed: () {},
-                  text: 'Submit',
-                  backgroundColor: Colors.yellow[300],
-                ),
-              ],
-            );
-          },
-        ));
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text('Weather BloC App'),
+            centerTitle: true,
+          ),
+          body: BlocConsumer<WeatherBloc, WeatherState>(
+            listener: (context, state) {
+              if (state.status == WeatherStatus.failure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.error?.message ?? 'An error occurred!'),
+                  ),
+                );
+              } else if (state.status == WeatherStatus.loading) {
+                CircularProgressIndicator();
+              }
+            },
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.sunny,
+                    size: 250.0,
+                    color: Colors.yellow[300],
+                  ),
+                  SizedBox(height: 20.0),
+                  TextFormField(
+                    controller: textController,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.all(10.0),
+                        hintText: 'Enter the city?'),
+                  ),
+                  SizedBox(height: 10.0),
+                  CustomButton(
+                    onPressed: () {
+                      context.read<WeatherBloc>().add(RefreshWeatherDataEvent(
+                          location: textController.text));
+                    },
+                    text: 'Submit',
+                    backgroundColor: Colors.yellow[300],
+                  ),
+                ],
+              );
+            },
+          )),
+    );
   }
 }
