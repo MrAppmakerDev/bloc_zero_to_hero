@@ -33,7 +33,10 @@ class CustomButton extends StatelessWidget {
           surfaceTintColor: Colors.transparent, // optional for newer versions
           elevation: 0, // remove elevation if needed
         ),
-        child: Text(text ?? 'Click Me'),
+        child: Text(
+          text ?? 'Click Me',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
