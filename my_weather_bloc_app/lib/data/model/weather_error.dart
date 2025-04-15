@@ -28,8 +28,8 @@ class WeatherError {
       );
 
   factory WeatherError.fromJson(Map<String, dynamic> json) => WeatherError(
-        code: json["code"] ?? -1,
-        message: json["message"] ?? "",
+        code: json["code"] ?? -3,
+        message: json["message"] ?? 'Unexpected error occurred at server side!',
       );
 
   Map<String, dynamic> toJson() => {

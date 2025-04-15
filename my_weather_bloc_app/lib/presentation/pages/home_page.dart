@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       horizontalPadding = 16; // for mobile screens
     }
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -44,7 +45,8 @@ class _HomePageState extends State<HomePage> {
             if (state.status == WeatherStatus.failure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(state.error?.message ?? 'An error occurred!'),
+                  content: Text(state.error?.message ??
+                      'Unexpected error occurred at server side!'),
                 ),
               );
             }
@@ -66,11 +68,17 @@ class _HomePageState extends State<HomePage> {
                       // Stretch for better button layout
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.sunny,
-                          size: 150.0, // Reduced size for better fit
-                          color: Colors.yellow[300],
-                        ),
+                        state.status == WeatherStatus.success
+                            ? Image.network(
+                                '${state.response?.current.condition.icon}',
+                                width: 150.0,
+                                color: Colors.yellow[300],
+                              )
+                            : Icon(
+                                Icons.sunny,
+                                size: 150.0, // Reduced size for better fit
+                                color: Colors.yellow[300],
+                              ),
                         state.status == WeatherStatus.success
                             ? Text(
                                 '${state.response?.location.name}',

@@ -25,22 +25,19 @@ class WeatherRemoteDatasource {
         return Either.left(response.data as Map<String, dynamic>);
       }
     } on DioException catch (e) {
-      if (e.response != null) {
+      if (e.response != null && e.response?.data != null) {
         // Handle DioException
-        final errorCode = -1;
-        final errorMessage = e.response;
-        final data = {'error': errorCode, 'message': errorMessage};
-        return Either.left(data as Map<String, dynamic>);
+        return Either.left(e.response?.data as Map<String, dynamic>);
       } else {
         // Handle network errors
-        final errorCode = -2;
+        final errorCode = -1;
         final errorMessage = 'Network error: ${e.toString()}';
         final data = {'error': errorCode, 'message': errorMessage};
         return Either.left(data as Map<String, dynamic>);
       }
     } catch (e) {
       // Handle unexpected errors
-      final errorCode = -3;
+      final errorCode = -2;
       final errorMessage = 'An unexpected error occurred: ${e.toString()}';
       final data = {'error': errorCode, 'message': errorMessage};
       return Either.left(data as Map<String, dynamic>);
