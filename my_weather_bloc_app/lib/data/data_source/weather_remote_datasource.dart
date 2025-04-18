@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:my_weather_bloc_app/core/api/api_config.dart';
 import 'package:my_weather_bloc_app/core/model/either.dart';
 
 class WeatherRemoteDatasource {
@@ -11,9 +10,8 @@ class WeatherRemoteDatasource {
       String location) async {
     try {
       final response = await dio.get(
-        '/current.json',
+        '/api/weather',
         queryParameters: {
-          'key': ApiConfig.apiKey,
           'q': location,
         },
       );

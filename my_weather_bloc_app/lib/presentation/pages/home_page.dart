@@ -72,12 +72,13 @@ class _HomePageState extends State<HomePage> {
                             ? Image.network(
                                 '${state.response?.current.condition.icon}',
                                 width: 150.0,
-                                color: Colors.yellow[300],
+                                color: Colors.black,
+                                fit: BoxFit.fill,
                               )
                             : Icon(
                                 Icons.sunny,
                                 size: 150.0, // Reduced size for better fit
-                                color: Colors.yellow[300],
+                                color: Colors.black,
                               ),
                         state.status == WeatherStatus.success
                             ? Text(
@@ -136,8 +137,8 @@ class _HomePageState extends State<HomePage> {
                             }
                           }, // Add vertical padding
                           text: 'Get Weather',
-                          backgroundColor: Colors
-                              .yellow[300], // More descriptive button text
+                          backgroundColor:
+                              Colors.black, // More descriptive button text
                         ),
                       ],
                     ),
