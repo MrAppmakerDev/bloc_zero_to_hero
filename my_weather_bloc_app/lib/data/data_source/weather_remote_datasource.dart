@@ -23,6 +23,11 @@ class WeatherRemoteDatasource {
         return Either.left(response.data as Map<String, dynamic>);
       }
     } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        return Either.left(e.response?.data as Map<String, dynamic>);
+      }
+
       if (e.response != null && e.response?.data != null) {
         // Handle DioException
         return Either.left(e.response?.data as Map<String, dynamic>);

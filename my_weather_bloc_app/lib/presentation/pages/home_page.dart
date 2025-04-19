@@ -56,6 +56,16 @@ class _HomePageState extends State<HomePage> {
               WeatherStatus.loading => const Center(
                   child: CircularProgressIndicator(),
                 ),
+              WeatherStatus.timeout => const Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Waiting for server to restart...'),
+                    ],
+                  ),
+                ),
               _ => Padding(
                   padding: kIsWeb
                       ? EdgeInsets.symmetric(horizontal: horizontalPadding)

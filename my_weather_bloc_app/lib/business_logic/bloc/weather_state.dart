@@ -1,6 +1,6 @@
 part of 'weather_bloc.dart';
 
-enum WeatherStatus { initial, loading, success, failure }
+enum WeatherStatus { initial, loading, success, failure, timeout }
 
 class WeatherState {
   WeatherResponse? response;
