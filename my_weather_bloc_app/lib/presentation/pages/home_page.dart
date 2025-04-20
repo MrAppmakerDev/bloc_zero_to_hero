@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_weather_bloc_app/business_logic/bloc/weather_bloc.dart';
 import 'package:my_weather_bloc_app/presentation/widgets/custom_button.dart';
+import 'package:my_weather_bloc_app/presentation/widgets/custom_loader.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -54,7 +55,10 @@ class _HomePageState extends State<HomePage> {
           builder: (context, state) {
             return switch (state.status) {
               WeatherStatus.loading => const Center(
-                  child: CircularProgressIndicator(),
+                  child: CustomLoader(),
+                ),
+              WeatherStatus.timeout => const Center(
+                  child: CustomLoader(text: 'Waiting for server to restart!'),
                 ),
               _ => Padding(
                   padding: kIsWeb

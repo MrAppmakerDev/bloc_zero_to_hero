@@ -17,7 +17,11 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     emit(state.copyWith(status: WeatherStatus.loading));
     var data = await repository.getWeatherData(event.location);
     if (data.isLeft()) {
-      emit(state.copyWith(status: WeatherStatus.failure, error: data.left));
+      if (data.left.code == 500) {
+        emit(state.copyWith(status: WeatherStatus.timeout, error: data.left));
+      } else {
+        emit(state.copyWith(status: WeatherStatus.failure, error: data.left));
+      }
     } else {
       emit(state.copyWith(status: WeatherStatus.success, response: data.right));
     }
