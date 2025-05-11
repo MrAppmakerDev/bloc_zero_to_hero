@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:my_weather_bloc_app/core/model/either.dart';
 
 class WeatherRemoteDatasource {
@@ -23,7 +24,9 @@ class WeatherRemoteDatasource {
         return Either.left(response.data as Map<String, dynamic>);
       }
     } on DioException catch (e) {
-      print('print: ${e.type}');
+      if (kDebugMode) {
+        print('print: ${e.type}');
+      }
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout) {
         final errorCode = 500;

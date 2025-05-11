@@ -7,3 +7,7 @@ class RefreshWeatherDataEvent extends WeatherEvent {
 
   RefreshWeatherDataEvent({required this.location});
 }
+
+class WeatherTimeoutEvent extends WeatherEvent {
+  WeatherTimeoutEvent();
+}

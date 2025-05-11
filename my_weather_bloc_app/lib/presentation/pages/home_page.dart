@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
               WeatherStatus.loading => const Center(
                   child: CustomLoader(),
                 ),
-              WeatherStatus.timeout => const Center(
-                  child: CustomLoader(text: 'Waiting for server to restart!'),
+              WeatherStatus.timeout => Center(
+                  child: CustomLoader(text: state.error?.message),
                 ),
               _ => Padding(
                   padding: kIsWeb
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         state.status == WeatherStatus.success
                             ? Image.network(
-                                '${state.response?.current.condition.icon}',
+                                'https:${state.response?.current.condition.icon}',
                                 width: 150.0,
                                 color: Colors.black,
                                 fit: BoxFit.fill,
